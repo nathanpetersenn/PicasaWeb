@@ -9,8 +9,8 @@ class PicasaWebPhoto {
   public $dimensions = null;
   public $url = null;
   public $fileSize = null;
-  public $fileName; // TODO populate this
-  public $caption; // TODO populate this
+  public $fileName = null;
+  public $caption = null;
 
   private $feed;
   private $parent = null;
@@ -27,6 +27,8 @@ class PicasaWebPhoto {
     $this->fetchUrl();
     $this->fetchFileSize();
     $this->fetchDimensions();
+    $this->fetchFileName();
+    $this->fetchCaption();
   }
 
   /*
@@ -34,42 +36,42 @@ class PicasaWebPhoto {
   */
 
   private function fetchExif() {
-    if (is_null($this->exif)) {
-      $e = $this->feed->children('http://schemas.google.com/photos/exif/2007')->tags;
+    $e = $this->feed->children('http://schemas.google.com/photos/exif/2007')->tags;
 
-      $exp = (float)$e->exposure;
-      if ($exp && $exp < 1) { $this->exif['exposure'] = '1/' . round(1 / $exp); }
-      if ($exp && $exp >= 1) { $this->exif['exposure'] = round($exp) . ' sec'; }
-      
-      $this->exif['fstop'] = (float)$e->fstop;
-      $this->exif['iso'] = (float)$e->iso;
-      $this->exif['make']= (string)$e->make;
-      $this->exif['model'] = (string)$e->model;
-      $this->exif['focallength'] = (float)$e->focallength;
-      $this->exif['time'] = ((int)$e->time);
-    }
+    $exp = (float)$e->exposure;
+    if ($exp && $exp < 1) { $this->exif['exposure'] = '1/' . round(1 / $exp); }
+    if ($exp && $exp >= 1) { $this->exif['exposure'] = round($exp) . ' sec'; }
+    
+    $this->exif['fstop'] = (float)$e->fstop;
+    $this->exif['iso'] = (float)$e->iso;
+    $this->exif['make']= (string)$e->make;
+    $this->exif['model'] = (string)$e->model;
+    $this->exif['focallength'] = (float)$e->focallength;
+    $this->exif['time'] = ((int)$e->time);
   }
 
   private function fetchUrl() {
-    if (is_null($this->url)) {
-      $this->url = (string)$this->feed->content->attributes()->src;
-    }
+    $this->url = (string)$this->feed->content->attributes()->src;
   }
 
   private function fetchFileSize() {
-    if (is_null($this->fileSize)) {
-      $gphoto = $this->feed->children('http://schemas.google.com/photos/2007');
-      $this->fileSize = (int)$gphoto->size;
-    }
+    $gphoto = $this->feed->children('http://schemas.google.com/photos/2007');
+    $this->fileSize = (int)$gphoto->size;
   }
 
   private function fetchDimensions() {
-    if (is_null($this->dimensions)) {
-      $gphoto = $this->feed->children('http://schemas.google.com/photos/2007');
-      $width = (int)$gphoto->width;
-      $height = (int)$gphoto->height;
-      $this->dimensions = array('width' => $width, 'height' => $height);
-    }
+    $gphoto = $this->feed->children('http://schemas.google.com/photos/2007');
+    $width = (int)$gphoto->width;
+    $height = (int)$gphoto->height;
+    $this->dimensions = array('width' => $width, 'height' => $height);
+  }
+
+  private function fetchFileName() {
+    $this->fileName = (string)$this->feed->children('http://search.yahoo.com/mrss/')->group->title;
+  }
+
+  private function fetchCaption() {
+    $this->caption = (string)$this->feed->children('http://search.yahoo.com/mrss/')->group->description;
   }
 
 }

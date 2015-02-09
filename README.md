@@ -1,5 +1,5 @@
 # PicasaWeb
-Interfacing with PicasasWeb made easy.
+Interfacing with PicasasWeb made easy. These classes allow easy access to the contents of _public_ users.
 
 ## Requirements
 - SimpleXML [library]
@@ -19,7 +19,6 @@ foreach ($user->albums as $album) {
 ```
 
 ## Future
-- Add support for authorized requests to private albums and photos (PicasaWebUser)
 - Add exception if can't load XML feed (All classes)
 - crop and resize "Recent" cover photo (PicasaWebAlbum)
 

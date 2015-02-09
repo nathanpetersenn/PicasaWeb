@@ -19,7 +19,9 @@ foreach ($user->albums as $album) {
 ```
 
 ## Future
-- Add support for authorized requests to private albums and photos
+- Add support for authorized requests to private albums and photos (PicasaWebUser)
+- Add exception if can't load XML feed (All classes)
+- crop and resize "Recent" cover photo (PicasaWebAlbum)
 
 ## Questions
 Email me at nathan@npetersen.net

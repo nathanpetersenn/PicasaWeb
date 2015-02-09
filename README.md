@@ -1,6 +1,9 @@
 # PicasaWeb
 Interfacing with PicasasWeb made easy.
 
+## Requirements
+- SimpleXML [library]
+
 ## Usage
 ```php
 require_once 'PicasaWebUser.php';
@@ -20,3 +23,5 @@ foreach ($user->albums as $album) {
 
 ## Questions
 Email me at nathan@npetersen.net
+
+[library]:http://php.net/manual/en/book.simplexml.php

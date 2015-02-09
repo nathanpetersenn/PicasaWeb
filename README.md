@@ -2,9 +2,19 @@
 Interfacing with PicasasWeb made easy. These classes allow easy access to the contents of _public_ users.
 
 ## Requirements
-- SimpleXML [library]
+- [SimpleXML] library
 
 ## Usage
+Default options
+```php
+array(
+  "excluded_albums" => array('Profile Photos', 'Profile Data', 'Scrapbook Photos'),
+  "recent" => true,
+  "user_data_album_name" => "Profile Data",
+  "profile_photos_album_name" => "Profile Photos"
+);
+```
+Iterate over user's albums
 ```php
 require_once 'PicasaWebUser.php';
 require_once 'PicasaWebAlbum.php';
@@ -25,4 +35,4 @@ foreach ($user->albums as $album) {
 ## Questions
 Email me at nathan@npetersen.net
 
-[library]:http://php.net/manual/en/book.simplexml.php
+[SimpleXML]:http://php.net/manual/en/book.simplexml.php

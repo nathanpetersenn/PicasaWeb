@@ -80,7 +80,7 @@ class PicasaWebAlbum {
 
   public function getNext() {
     if (is_null($this->parent)) {
-      return;
+      return null;
     }
 
     $this->parent->fetchAlbums();
@@ -101,7 +101,7 @@ class PicasaWebAlbum {
 
   public function getPrev() {
     if (is_null($this->parent)) {
-      return;
+      return null;
     }
 
     $this->parent->fetchAlbums();

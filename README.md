@@ -1,5 +1,5 @@
 # PicasaWeb
-Interfacing with PicasasWeb made easy. These classes allow easy access to the contents of _public_ users.
+Interfacing with Picasa Web Albums made easy (https://picasaweb.google.com/). These classes allow easy access to the contents of _public_ users.
 
 ## Requirements
 - [SimpleXML] library
